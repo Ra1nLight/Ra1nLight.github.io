@@ -1,7 +1,7 @@
 ---
 title: Windows 下 VS Code 中的 GCC 环境配置
-date: 2023-03-09 14:01:47
-categories: [学习记录]
+date: 2023-03-09 17:50:00 +0800
+categories: [学习记录, 经验分享]
 tags: [VS Code, C/C++, GCC, 环境配置]
 ---
 
