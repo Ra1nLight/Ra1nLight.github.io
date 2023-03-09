@@ -3,6 +3,7 @@ title: Windows 下 VS Code 中的 GCC 环境配置
 date: 2023-03-09 17:50:00 +0800
 categories: [学习记录, 经验分享]
 tags: [VS Code, C/C++, GCC, 环境配置]
+math: true
 ---
 
 对于刚接触 VS Code 的初学者来说，配置 C/C++ 开发环境是个很麻烦的问题，即使网上有一大堆教程也一头雾水。其实配环境并不难~~会者不难~~，哥们凭借自己配环境和指导别人配环境的经验记录一下 Windows 下 C/C++ 开发环境的配置过程。学会之后甚至还能举一反三，对配置其他语言的开发环境很有帮助。
@@ -21,7 +22,7 @@ tags: [VS Code, C/C++, GCC, 环境配置]
 
 ![7HEXPFX91QH1T1.png](https://kjimg10.360buyimg.com/ott/jfs/t20250308/211753/16/26307/4751/640985deFf15cb365/393419bedf948ca1.png)
 
-## 获取 mingw-w64
+### 获取 mingw-w64
 
 MSYS2 安装完成之后将启动 MSYS2 终端。在终端中输入以下命令安装 mingw-w64：
 
@@ -77,7 +78,7 @@ $ pacman -S --needed base-devel mingw-w64-x86_64-toolchain
 ![F_8A1DP43AASHUJP47.png](https://kjimg10.360buyimg.com/ott/jfs/t20250308/14836/26/16753/5479/6409988dF2c856286/04e1760befb4bc3f.png)
 
 > 在一般情况下，gcc 无法识别中文路径，如果弹框报错 ```no such file or directory```，请确认源代码全路径不包含中文。
-{: .prompt-info}
+{: .prompt-warning }
 
 ### 调试配置
 
@@ -90,9 +91,11 @@ $ pacman -S --needed base-devel mingw-w64-x86_64-toolchain
 将自动生成的配置中的以下几个字段修改一下：
 
 ```json
+{
 "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",    // 自动识别将要调试的文件的位置
 "externalConsole": true,    // 启动一个新的终端窗口，非必须
-"miDebuggerPath": "",       // 指定 gdb 路径，这里没填就是让它自己从环境变量中寻找
+"miDebuggerPath": ""        // 指定 gdb 路径，这里没填就是让它自己从环境变量中寻找
+}
 ```
 
 修改完成后就可以很方便地在 VS Code 中给源代码下断点调试了。我们可以根据需要研究一下各个配置选项的含义，选择最适合自己的配置进行调试。其他编程语言的调试配置同样也可以在这个文件中添加并编辑。
